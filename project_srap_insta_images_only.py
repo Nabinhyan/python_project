@@ -6,7 +6,7 @@ import requests
 import shutil	 #used to download the image and save
 
 class App:
-	def __init__(self, username = 'place your own insta user id', password = 'your insta passowrd', target_username = 'tomcruise',path = './downloaded'):
+	def __init__(self, username, password , target_username ,path = './downloaded'):
 		self.username = username
 		self.password = password
 		self.target_username = target_username
@@ -15,7 +15,7 @@ class App:
 		self.error = False
 		self.main_url = 'https://www.instagram.com'
 		self.driver.get(self.main_url)
-		sleep(5)
+		sleep(3)
 		self.login()
 		if self.error is False:
 			self.close_dialog_box()
@@ -27,7 +27,7 @@ class App:
 			if not os.path.exists(path):
 				os.mkdir(path)
 			self.downloading_images()
-		sleep(5)
+		sleep(3)
 		self.driver.close()
 
 	def downloading_images(self):
@@ -128,5 +128,8 @@ class App:
 			print('some error occured while login process')
 
 if __name__ == '__main__':
-	app = App()
+	username = str(input('Enter your Instagram User id :: '))
+	Password = str(input('Enter the password for given id :: '))
+	target_username = str(input('Enter name of targeted user :: '))
+	app = App(username, Password, target_username)
 	
